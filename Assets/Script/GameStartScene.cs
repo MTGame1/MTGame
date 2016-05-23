@@ -11,7 +11,7 @@ namespace Assets.Script
     {
 
         private GameObject button;
-        public virtual void Initialize()
+        public override void Initialize()
         {
             base.Initialize();
 
