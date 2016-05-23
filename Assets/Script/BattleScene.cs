@@ -23,6 +23,9 @@ namespace Assets.Script
         private GameObject _bullet1;
         private GameObject _bullet2;
 
+		private GameObject _bullet3;
+
+
         private GameObject _player1Bottom;
         private GameObject _player2Bottom;
 
@@ -42,6 +45,12 @@ namespace Assets.Script
                 _player2.transform.localPosition = new Vector3(_player2.transform.localPosition.x - 20f, _player2.transform.localPosition.y, _player2.transform.localPosition.z);
             
             }
+
+			if (_bullet3) {
+				Rigidbody2D rigid = _bullet3.GetComponent<Rigidbody2D> () as Rigidbody2D;
+
+				rigid.velocity = new Vector2 (4, 0f);
+			}
         }
 
 
@@ -87,6 +96,27 @@ namespace Assets.Script
 
             Bullet bullet = _bullet1.AddComponent<Bullet>();
             bullet.right = true;
+
+
+
+
+			string path3 = "Prefab/zidan";
+			GameObject obj3 = Resources.Load(path3) as GameObject;
+		
+
+
+			_bullet3 =	GameObject.Instantiate (obj3, new Vector2 (-296, 7), Quaternion.Euler (0, 0, 45)) as GameObject;
+
+			_bullet3.name = "bu";
+
+			_bullet3.transform.SetParent(this.transform, false);
+
+
+
+
+
+
+
         }
 
         private void OnClickPlayer2Btn(GameObject go, BaseEventData eventData)
