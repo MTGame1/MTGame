@@ -30,21 +30,44 @@ namespace Assets.Script
         private GameObject _player2Bottom;
 
         private float _buttomMoveTime = 5f;
+        private float _MoveLeftTime = 1f;
+        private int _MoveNum = 2;
 
+        public  int _bulletNum = 0;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            gameObjectList = this.GetComponent<GameObjectList>();
+            _player1Bottom = gameObjectList.gameobjectList[6];
+            _player2Bottom = gameObjectList.gameobjectList[7];
+        }
         protected override void Update()
         {
             _buttomMoveTime -= Time.deltaTime;
-            if(_buttomMoveTime < 0)
+            if (_buttomMoveTime < 0 && _MoveNum > 0)
             {
-                _buttomMoveTime = 5f;
+                _MoveLeftTime -= Time.deltaTime;
+                if (_MoveLeftTime < 0)
+                {
+                    _buttomMoveTime = 5f;
+                    _MoveLeftTime = 1f;
+                    _MoveNum -= 1;
+                    _player1Bottom.GetComponent<BottomController1>().isMoving = false;
+                    _player2Bottom.GetComponent<BottomController2>().isMoving = false;
+                }
+                else
+                {
+                    _player1Bottom.GetComponent<BottomController1>().isMoving = true;
+                    _player2Bottom.GetComponent<BottomController2>().isMoving = true;
+                }
 
-                _player1Bottom.transform.localPosition = new Vector3(_player1Bottom.transform.localPosition.x + 20f, _player1Bottom.transform.localPosition.y, _player1Bottom.transform.localPosition.z);
-                _player2Bottom.transform.localPosition = new Vector3(_player2Bottom.transform.localPosition.x - 20f, _player2Bottom.transform.localPosition.y, _player2Bottom.transform.localPosition.z);
+                _player1.transform.localPosition = new Vector3(_player1.transform.localPosition.x + 1f, _player1.transform.localPosition.y, _player1.transform.localPosition.z);
+                _player2.transform.localPosition = new Vector3(_player2.transform.localPosition.x - 1f, _player2.transform.localPosition.y, _player2.transform.localPosition.z);
 
-                _player1.transform.localPosition = new Vector3(_player1.transform.localPosition.x + 20f, _player1.transform.localPosition.y, _player1.transform.localPosition.z);
-                _player2.transform.localPosition = new Vector3(_player2.transform.localPosition.x - 20f, _player2.transform.localPosition.y, _player2.transform.localPosition.z);
-            
+               
             }
+
 
 			if (_bullet3) {
 				Rigidbody2D rigid = _bullet3.GetComponent<Rigidbody2D> () as Rigidbody2D;
@@ -73,8 +96,7 @@ namespace Assets.Script
             _player2 = gameObjectList.gameobjectList[3];
             _bulletPos1 = gameObjectList.gameobjectList[4];
             _bulletPos2 = gameObjectList.gameobjectList[5];
-            _player1Bottom = gameObjectList.gameobjectList[6];
-            _player2Bottom = gameObjectList.gameobjectList[7];
+           
 
 
             UIEventListener.Get(_player1Btn).onClicks.Add(OnClickPlayer1Btn);
@@ -87,49 +109,82 @@ namespace Assets.Script
         private void OnClickPlayer1Btn(GameObject go, BaseEventData eventData)
         {
             //_player1.GetComponent<PlayerController1>().Shoot();
+            if(_player1.GetComponent<PlayerController1>().isHasBullet)
+            {
+                string path = "Prefab/bullet";
+                GameObject obj = Resources.Load(path) as GameObject;
+                _bullet1 = GameObject.Instantiate(obj);
+                _bullet1.transform.SetParent(this.transform, false);
+                _bullet1.transform.position = _bulletPos1.transform.position;
 
-            string path = "Prefab/bullet";
-            GameObject obj = Resources.Load(path) as GameObject;
-            _bullet1 = GameObject.Instantiate(obj);
-            _bullet1.transform.SetParent(this.transform, false);
-            _bullet1.transform.position = _bulletPos1.transform.position;
+                Bullet bullet = _bullet1.AddComponent<Bullet>();
+                bullet.right = true;
 
-            Bullet bullet = _bullet1.AddComponent<Bullet>();
-            bullet.right = true;
+                _player1.GetComponent<PlayerController1>().isHasBullet = false;
+            }
+            else
+            {
+                _player1.GetComponent<PlayerController1>().moveUp = !_player1.GetComponent<PlayerController1>().moveUp;
+            }
 
-
-
-
-			string path3 = "Prefab/zidan";
-			GameObject obj3 = Resources.Load(path3) as GameObject;
-		
-
-
-			_bullet3 =	GameObject.Instantiate (obj3, new Vector2 (-296, 7), Quaternion.Euler (0, 0, 0)) as GameObject;
-
-			_bullet3.name = "bu";
-
-			_bullet3.transform.SetParent(this.transform, false);
-
-
-
-
-
-
+// 			string path3 = "Prefab/zidan";
+// 			GameObject obj3 = Resources.Load(path3) as GameObject;
+// 		
+// 
+// 
+// 			_bullet3 =	GameObject.Instantiate (obj3);
+// 
+// 			_bullet3.name = "bu";
+// 
+// 			_bullet3.transform.SetParent(this.transform, false);
+//             _bullet3.transform.position = _bulletPos1.transform.position;
 
         }
 
         private void OnClickPlayer2Btn(GameObject go, BaseEventData eventData)
         {
+            if(_player2.GetComponent<PlayerController2>().isHasBullet)
+            {
+                string path = "Prefab/bullet";
+                GameObject obj = Resources.Load(path) as GameObject;
+                _bullet2 = GameObject.Instantiate(obj);
+                _bullet2.transform.SetParent(this.transform, false);
+                _bullet2.transform.position = _bulletPos2.transform.position;
 
-            string path = "Prefab/bullet";
-            GameObject obj = Resources.Load(path) as GameObject;
-            _bullet2 = GameObject.Instantiate(obj);
-            _bullet2.transform.SetParent(this.transform, false);
-            _bullet2.transform.position = _bulletPos2.transform.position;
+                Bullet bullet = _bullet2.AddComponent<Bullet>();
+                bullet.right = false;
 
-            Bullet bullet = _bullet2.AddComponent<Bullet>();
-            bullet.right = false;
+                _player2.GetComponent<PlayerController2>().isHasBullet = false;
+
+				Rigidbody bulletRg=_bullet2.GetComponent<Rigidbody>() as Rigidbody;
+				if (bulletRg) {
+				} else {
+					Debug.Log("meiyou");
+				}
+				bulletRg.velocity = new Vector3 (300f,300f,300f);
+				//this.gameObject.transform.localPosition = initPosition;
+            }
+            else
+            {
+                _player2.GetComponent<PlayerController2>().moveUp = !_player2.GetComponent<PlayerController2>().moveUp;
+            }
+           
+        }
+
+        public void FillingBullet()
+        {
+            if (!_player1.GetComponent<PlayerController1>().isHasBullet && !_player2.GetComponent<PlayerController2>().isHasBullet)
+            {
+               if(_bulletNum == 2)
+               {
+                   Debug.Log("ddddd");
+                   _player1.GetComponent<PlayerController1>().isHasBullet = true;
+                   _player2.GetComponent<PlayerController2>().isHasBullet = true;
+                   _bulletNum = 0;
+                   //增加一个提示 下一个回合开始的UI提示
+
+               }
+            }
         }
 
     }

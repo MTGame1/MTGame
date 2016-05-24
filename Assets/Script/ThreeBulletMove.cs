@@ -3,8 +3,8 @@ using System.Collections;
 
 public class ThreeBulletMove : MonoBehaviour {
 	private bool istrigger = false;
-	public GameObject bullect;
-	public GameObject myparent;
+	private GameObject bullect;
+	private GameObject myparent;
 	private Rigidbody2D rigid1;
 	private Rigidbody2D rigid2;
 	private Rigidbody2D rigid3;
@@ -12,6 +12,9 @@ public class ThreeBulletMove : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
+		string path3 = "Prefab/zidan";
+		this.bullect = Resources.Load(path3) as GameObject;
+		this.myparent = GameObject.Find("BattleScene") as GameObject;
 
 	}
 	
@@ -28,7 +31,7 @@ public class ThreeBulletMove : MonoBehaviour {
 		} 
 	}
 	public void OnTriggerEnter2D(Collider2D  other){
-		if (other.name == "bu") {
+		//if (other.name == "bu") {
 			Debug.Log ("triger");
 			Destroy (other.gameObject);
 
@@ -49,6 +52,6 @@ public class ThreeBulletMove : MonoBehaviour {
             rigid3.gameObject.transform.SetParent(myparent.transform,false);
             Destroy (rigid3.gameObject.GetComponent<BoxCollider2D> ());
             	rigid3.name = "r3";
-        }
+       // }
 	}
 }

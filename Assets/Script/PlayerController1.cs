@@ -9,7 +9,9 @@ namespace Assets.Script
     public class PlayerController1 : MonoBehaviour
     {
         private Vector3 initPosition;
-        private bool moveUp = true;
+        public bool moveUp = true;
+
+        public bool isHasBullet = true;
         void Awake()
         {
             /*initPosition = this.gameObject.transform.localPosition;*/

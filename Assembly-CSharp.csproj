@@ -47,6 +47,8 @@
   <ItemGroup>
      <Compile Include="Assets\Script\BaseScene.cs" />
      <Compile Include="Assets\Script\BattleScene.cs" />
+     <Compile Include="Assets\Script\BottomController1.cs" />
+     <Compile Include="Assets\Script\BottomController2.cs" />
      <Compile Include="Assets\Script\Bullet.cs" />
      <Compile Include="Assets\Script\GameObjectList.cs" />
      <Compile Include="Assets\Script\GameStartScene.cs" />

@@ -7,7 +7,7 @@ namespace Assets.Script
     public class SceneManager : MonoBehaviour
     {
         public GameObject _sceneObject;
-        private GameObject _currentScene;
+        public GameObject _currentScene;
         private BaseScene _baseScene;
         public Canvas UIList{get;set;}
         public Canvas PopList{get;set;}
