@@ -105,7 +105,7 @@ namespace Assets.Script
 		
 
 
-			_bullet3 =	GameObject.Instantiate (obj3, new Vector2 (-296, 7), Quaternion.Euler (0, 0, 45)) as GameObject;
+			_bullet3 =	GameObject.Instantiate (obj3, new Vector2 (-296, 7), Quaternion.Euler (0, 0, 0)) as GameObject;
 
 			_bullet3.name = "bu";
 
