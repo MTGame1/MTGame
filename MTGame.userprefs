@@ -2,7 +2,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\BattleScene.cs">
     <Files>
-      <File FileName="Assets\Script\BattleScene.cs" Line="133" Column="5" />
+      <File FileName="Assets\Script\Bullet.cs" Line="7" Column="1" />
+      <File FileName="Assets\Script\BattleScene.cs" Line="138" Column="1" />
+      <File FileName="Assets\Script\SceneManager.cs" Line="68" Column="1" />
+      <File FileName="Assets\Script\ThreeBulletMove.cs" Line="124" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

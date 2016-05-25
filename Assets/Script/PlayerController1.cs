@@ -47,7 +47,7 @@ namespace Assets.Script
             //如果是碰撞到子弹，逻辑在这里加
             if (other.tag.CompareTo("Bullet") == 0)
             {
-                Debug.Log("player1 Hp down");
+//                Debug.Log("player1 Hp down");
             }
         }
     }

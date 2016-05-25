@@ -1,57 +1,100 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+namespace Assets.Script
+{
 public class ThreeBulletMove : MonoBehaviour {
 	private bool istrigger = false;
 	private GameObject bullect;
 	private GameObject myparent;
-	private Rigidbody2D rigid1;
-	private Rigidbody2D rigid2;
-	private Rigidbody2D rigid3;
+		private GameObject bullet1;
+		private GameObject bullet2;
+		private GameObject bullet3;
+		private Bullet b_bullet1;
+		private Bullet b_bullet2;
+		private Bullet b_bullet3;
 
 	// Use this for initialization
 	void Start () {
 		
 		string path3 = "Prefab/zidan";
 		this.bullect = Resources.Load(path3) as GameObject;
-		this.myparent = GameObject.Find("BattleScene") as GameObject;
+
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-		//Rigidbody2D rigid=((GameObject)GameObject.Instantiate (bullect,new Vector2(0,0),Quaternion.identity)).GetComponent<Rigidbody2D>();
-		//Rigidbody2D rigid=GameObject.Find("bullet").GetComponent<Rigidbody2D>();
-		//rigid.velocity = new Vector2 (0, 1f);
-		if (istrigger) {
-			rigid1.velocity = new Vector2 (8,0f);
-			rigid2.velocity = new Vector2 (8, 8f);
-			rigid3.velocity = new Vector2 (8, -8f);
-		} 
+			if(bullet1){
+				if (b_bullet1.right) {
+					bullet1.transform.localPosition = new Vector3 (bullet1.transform.localPosition.x + 600f * Time.deltaTime, bullet1.transform.localPosition.y, bullet1.transform.localPosition.z);
+				} else {
+					bullet1.transform.localPosition = new Vector3 (bullet1.transform.localPosition.x - 600f * Time.deltaTime, bullet1.transform.localPosition.y, bullet1.transform.localPosition.z);
+
+				}
+			}
+
+			if(bullet2){
+				if (b_bullet2.right) {
+					bullet2.transform.localPosition = new Vector3 (bullet2.transform.localPosition.x + 600f * Time.deltaTime, bullet2.transform.localPosition.y+ 300f * Time.deltaTime, bullet2.transform.localPosition.z);
+				} else {
+					bullet2.transform.localPosition = new Vector3 (bullet2.transform.localPosition.x - 600f * Time.deltaTime, bullet2.transform.localPosition.y+ 300f * Time.deltaTime, bullet2.transform.localPosition.z);
+
+				}
+			}
+
+			if(bullet3){
+				if (b_bullet3.right) {
+					bullet3.transform.localPosition = new Vector3 (bullet3.transform.localPosition.x + 600f * Time.deltaTime, bullet3.transform.localPosition.y- 300f * Time.deltaTime, bullet3.transform.localPosition.z);
+				} else {
+					bullet3.transform.localPosition = new Vector3 (bullet3.transform.localPosition.x - 600f * Time.deltaTime, bullet3.transform.localPosition.y-300f * Time.deltaTime, bullet3.transform.localPosition.z);
+
+				}
+			}
+
+
 	}
-	public void OnTriggerEnter2D(Collider2D  other){
-		//if (other.name == "bu") {
-			Debug.Log ("triger");
+	void OnTriggerEnter(Collider other){
+		if (other.name == "bu") {
 			Destroy (other.gameObject);
 
 			istrigger = true;
-			rigid1 = ((GameObject)GameObject.Instantiate (bullect, transform.position,Quaternion.Euler(0,0,0))).GetComponent<Rigidbody2D> ();
-			rigid1.gameObject.transform.SetParent(myparent.transform,true);
-            rigid1.gameObject.transform.localScale=new Vector3(60,60,0);
 
-            Destroy (rigid1.gameObject.GetComponent<BoxCollider2D> ());
-            rigid1.name="r1";
+				BattleScene._bulletNum--;
+
+			GameObject otherObject = other.gameObject;
+			Bullet otherBuller=otherObject.GetComponent<Bullet>();
+		
+
+			string path = "Prefab/bullet";
+			GameObject obj = Resources.Load(path) as GameObject;
+			bullet1 = GameObject.Instantiate(obj);
+			bullet1.transform.SetParent(transform.parent.transform, false);
+			bullet1.transform.position = otherObject.transform.position;
+
+			b_bullet1 = bullet1.AddComponent<Bullet>();
+			b_bullet1.right = otherBuller.right;
+			BattleScene._bulletNum++;
+
+	
+			bullet2 = GameObject.Instantiate(obj);
+			bullet2.transform.SetParent(transform.parent.transform, false);
+			bullet2.transform.position = otherObject.transform.position;
+
+			b_bullet2 = bullet2.AddComponent<Bullet>();
+			b_bullet2.right = otherBuller.right;
+			BattleScene._bulletNum++;
 
 
-            rigid2 = ((GameObject)GameObject.Instantiate (bullect, new Vector2 (0, 2), Quaternion.Euler(0, 0, 45))).GetComponent<Rigidbody2D> ();
-            rigid2.gameObject.transform.SetParent(myparent.transform,false);
-            Destroy (rigid2.gameObject.GetComponent<BoxCollider2D> ());
-            rigid2.name = "r2";
-            rigid3 = ((GameObject)GameObject.Instantiate (bullect, new Vector2 (0, 2),Quaternion.Euler(0,0,-45))).GetComponent<Rigidbody2D> ();
-            rigid3.gameObject.transform.SetParent(myparent.transform,false);
-            Destroy (rigid3.gameObject.GetComponent<BoxCollider2D> ());
-            	rigid3.name = "r3";
-       // }
+			bullet3 = GameObject.Instantiate(obj);
+			bullet3.transform.SetParent(transform.parent.transform, false);
+			bullet3.transform.position = otherObject.transform.position;
+			b_bullet3 = bullet3.AddComponent<Bullet>();
+			b_bullet3.right = otherBuller.right;
+			BattleScene._bulletNum++;
+
+
+        }
 	}
+
+}
 }
