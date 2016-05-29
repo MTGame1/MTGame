@@ -112,6 +112,8 @@ namespace Assets.Script
 
             _player1.AddComponent<PlayerController1>();
             _player2.AddComponent<PlayerController2>();
+
+            createMiddle();
         }
 
         private void OnClickPlayer1Btn(GameObject go, BaseEventData eventData)
@@ -178,6 +180,14 @@ namespace Assets.Script
 
                }
             }
+        }
+
+        private void createMiddle() {
+            string path = "Prefab/zhuan";
+            GameObject obj = Resources.Load(path) as GameObject;
+            GameObject zhuan = GameObject.Instantiate(obj);
+            zhuan.transform.SetParent(this.transform, true);
+            zhuan.transform.position = new Vector3(1,-3,0);
         }
 
     }
