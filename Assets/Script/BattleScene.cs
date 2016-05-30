@@ -168,6 +168,7 @@ namespace Assets.Script
 
         public void FillingBullet()
         {
+           
             if (!_player1.GetComponent<PlayerController1>().isHasBullet && !_player2.GetComponent<PlayerController2>().isHasBullet)
             {
                if(_bulletNum == 0)
@@ -186,8 +187,15 @@ namespace Assets.Script
             string path = "Prefab/zhuan";
             GameObject obj = Resources.Load(path) as GameObject;
             GameObject zhuan = GameObject.Instantiate(obj);
-            zhuan.transform.SetParent(this.transform, true);
+            zhuan.transform.SetParent(this.transform, false);
             zhuan.transform.position = new Vector3(1,-3,0);
+
+
+            string path2 = "Prefab/MiddleFantan";
+            GameObject obj2 = Resources.Load(path2) as GameObject;
+            GameObject zhuan2 = GameObject.Instantiate(obj2);
+            zhuan2.transform.SetParent(this.transform, false);
+            zhuan2.transform.position = new Vector3(-1, 2, 0);
         }
 
     }

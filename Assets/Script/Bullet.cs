@@ -41,39 +41,55 @@ namespace Assets.Script
 
         void OnTriggerEnter(Collider other)
         {
-           
+
             if (other.name.CompareTo("Player1Bottom") == 0)
             {
                 GameObject battleScene = SceneManager.GetInstance()._currentScene;
-				BattleScene._bulletNum--;
+                BattleScene._bulletNum--;
                 battleScene.GetComponent<BattleScene>().FillingBullet();
                 GameObject.Destroy(this.gameObject);
             }
-            if (other.name.CompareTo("Player2Bottom") == 0)
+            else if (other.name.CompareTo("Player2Bottom") == 0)
             {
-                GameObject battleScene = SceneManager.GetInstance()._currentScene;   
-				BattleScene._bulletNum--;  
-                battleScene.GetComponent<BattleScene>().FillingBullet();  
+                GameObject battleScene = SceneManager.GetInstance()._currentScene;
+                BattleScene._bulletNum--;
+                battleScene.GetComponent<BattleScene>().FillingBullet();
                 GameObject.Destroy(this.gameObject);
             }
-            if (other.tag.CompareTo("Player1") == 0)
+            else if (other.tag.CompareTo("Player1") == 0)
             {//子弹击中玩家1
                 GameObject battleScene = SceneManager.GetInstance()._currentScene;
-				BattleScene._bulletNum--;   
+                BattleScene._bulletNum--;
                 battleScene.GetComponent<BattleScene>().FillingBullet();
-				Debug.Log("子弹击中玩家1");
+                Debug.Log("子弹击中玩家1");
                 GameObject.Destroy(this.gameObject);
             }
-            if (other.tag.CompareTo("Player2") == 0)
-			{//子弹击中玩家2
-                GameObject battleScene = SceneManager.GetInstance()._currentScene; 
-				BattleScene._bulletNum--;    
+            else if (other.tag.CompareTo("Player2") == 0)
+            {//子弹击中玩家2
+                GameObject battleScene = SceneManager.GetInstance()._currentScene;
+                BattleScene._bulletNum--;
                 battleScene.GetComponent<BattleScene>().FillingBullet();
-				Debug.Log("子弹击中玩家2");
+                Debug.Log("子弹击中玩家2");
+                GameObject.Destroy(this.gameObject);
+            }
+            else if (other.tag.CompareTo("UpWall") == 0)
+            {
+                GameObject battleScene = SceneManager.GetInstance()._currentScene;
+                BattleScene._bulletNum--;
+                battleScene.GetComponent<BattleScene>().FillingBullet();
+               
+                GameObject.Destroy(this.gameObject);
+            }
+            else if (other.tag.CompareTo("DownWall") == 0)
+            {
+                GameObject battleScene = SceneManager.GetInstance()._currentScene;
+                BattleScene._bulletNum--;
+                battleScene.GetComponent<BattleScene>().FillingBullet();
+
                 GameObject.Destroy(this.gameObject);
             }
 
-		
+
         }
     }
 }
