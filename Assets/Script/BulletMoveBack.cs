@@ -49,19 +49,22 @@ public class BulletMoveBack : MonoBehaviour {
 
 			string path = "Prefab/bullet";
 			GameObject obj = Resources.Load(path) as GameObject;
-		
 
+                Debug.Log("back");
 
-			bullet3 = GameObject.Instantiate(obj);
-			bullet3.transform.SetParent(transform.parent.transform, false);
+                bullet3 = GameObject.Instantiate(obj);
+			bullet3.transform.SetParent(transform.parent.parent.transform, false);
 			bullet3.transform.position = otherObject.transform.position;
 			b_bullet3 = bullet3.AddComponent<Bullet>();
 			b_bullet3.right = otherBuller.right;
 			BattleScene._bulletNum++;
 
+             GameObject parentGm=   transform.parent.gameObject;
 
+                BaseMiddleObject baseMiddle = (BaseMiddleObject)parentGm.GetComponent<BaseMiddleObject>();
+              //  baseMiddle.showNext();
+            }
         }
-	}
 
 }
 }

@@ -35,8 +35,8 @@ public class BulletMovUp : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if (other.name == "bu") {
 			Destroy (other.gameObject);
-
-			istrigger = true;
+                Debug.Log("up");
+                istrigger = true;
 
 				BattleScene._bulletNum--;
 
@@ -47,17 +47,21 @@ public class BulletMovUp : MonoBehaviour {
 			string path = "Prefab/bullet";
 			GameObject obj = Resources.Load(path) as GameObject;
 			bullet1 = GameObject.Instantiate(obj);
-			bullet1.transform.SetParent(transform.parent.transform, false);
+			bullet1.transform.SetParent(transform.parent.parent.transform, false);
 			bullet1.transform.position = otherObject.transform.position;
 
 			b_bullet1 = bullet1.AddComponent<Bullet>();
 			b_bullet1.right = otherBuller.right;
 			BattleScene._bulletNum++;
 
-	
 
 
-        }
+                GameObject parentGm = transform.parent.gameObject;
+
+                BaseMiddleObject baseMiddle = (BaseMiddleObject)parentGm.GetComponent<BaseMiddleObject>();
+                baseMiddle.showNext();
+
+            }
 	}
 
 }

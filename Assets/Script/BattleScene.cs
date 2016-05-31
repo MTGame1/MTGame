@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,8 @@ namespace Assets.Script
 {
     public class BattleScene : BaseScene
     {
+        public const float ONE_TO_THREE = 1;
+        public const float ONE_TO_OTHER = 2;
 
         private GameObject button;
         private GameObjectList gameObjectList;
@@ -34,6 +37,21 @@ namespace Assets.Script
         private int _MoveNum = 2;
 
 		public static int _bulletNum = 0;
+        public static List<List<BaseMiddleObject>> middleList = new List<List<BaseMiddleObject>>();
+
+        public static float[,] middlePos = new float[9, 2] { 
+            //中间件x，中间件y
+            { -82 ,165}, 
+            { 82  ,115},    
+            { 0   , 135}, 
+            {  -82, 0 },
+            {  82 , 30 },
+            {  0  , 24 },
+            {  -82, -135 },
+            {  82 , -115 },
+            {  0  , -165 },
+           
+        };
 
         #region PlayerLife --pzy
         private PlayerLife _player1Life;
@@ -60,7 +78,7 @@ namespace Assets.Script
         }
         protected override void Update()
         {
-			
+            Debug.Log("zidan"+ BattleScene._bulletNum);
 			if(_bullet1){
 				
 				_bullet1.transform.localPosition = new Vector3 (_bullet1.transform.localPosition.x + 300f * Time.deltaTime, _bullet1.transform.localPosition.y, _bullet1.transform.localPosition.z);
@@ -200,19 +218,70 @@ namespace Assets.Script
         }
 
         private void createMiddle() {
-            string path = "Prefab/zhuan";
-            GameObject obj = Resources.Load(path) as GameObject;
-            GameObject zhuan = GameObject.Instantiate(obj);
-            zhuan.transform.SetParent(this.transform, false);
-            zhuan.transform.position = new Vector3(1,-3,0);
+            Debug.Log(middlePos.Length);
+            Debug.Log("jinrucreate");
+            for (int i = 0; i < middlePos.Length/2; i++)
+            {
+                int count = 0;
+                List<BaseMiddleObject> list = new List<BaseMiddleObject>();
+                BaseMiddleObject baseMiddle;
+
+                string path = "Prefab/zhuan";
+                GameObject obj = Resources.Load(path) as GameObject;
+                GameObject zhuan = GameObject.Instantiate(obj);
+                zhuan.transform.SetParent(this.transform, false);
+                zhuan.transform.localPosition = new Vector3(middlePos[i,0], middlePos[i, 1], -1000);
+                baseMiddle = (BaseMiddleObject)zhuan.GetComponent<BaseMiddleObject>();
+                baseMiddle.index = i;
+               
+                list.Add(baseMiddle);
+                count++;
 
 
-            string path2 = "Prefab/MiddleFantan";
-            GameObject obj2 = Resources.Load(path2) as GameObject;
-            GameObject zhuan2 = GameObject.Instantiate(obj2);
-            zhuan2.transform.SetParent(this.transform, false);
-            zhuan2.transform.position = new Vector3(-1, 2, 0);
+                string path2 = "Prefab/MiddleFantan";
+                GameObject obj2 = Resources.Load(path2) as GameObject;
+                GameObject zhuan2 = GameObject.Instantiate(obj2);
+                zhuan2.transform.SetParent(this.transform, false);
+                zhuan2.transform.localPosition = new Vector3(middlePos[i, 0], middlePos[i, 1], -1000); 
+                baseMiddle = (BaseMiddleObject)zhuan2.GetComponent<BaseMiddleObject>();
+                baseMiddle.index = i;
+               
+                list.Add(baseMiddle);
+                count++;
+
+                middleList.Add(list);
+                //int showIndex = getRandoms(count);
+                int showIndex=UnityEngine.Random.Range(0, count+3);
+
+                Debug.Log(showIndex);
+                if (showIndex < count)
+                {
+                    list[showIndex].showMiddle();
+                }
+
+
+
+            }
+
+
+
+
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }

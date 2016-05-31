@@ -37,6 +37,7 @@ public class BulletMoveDown : MonoBehaviour {
 	}
 	void OnTriggerEnter(Collider other){
 		if (other.name == "bu") {
+                Debug.Log("down");
 			Destroy (other.gameObject);
 
 			istrigger = true;
@@ -53,14 +54,21 @@ public class BulletMoveDown : MonoBehaviour {
 
 
 			bullet3 = GameObject.Instantiate(obj);
-			bullet3.transform.SetParent(transform.parent.transform, false);
+			bullet3.transform.SetParent(transform.parent.parent.transform, false);
 			bullet3.transform.position = otherObject.transform.position;
 			b_bullet3 = bullet3.AddComponent<Bullet>();
 			b_bullet3.right = otherBuller.right;
 			BattleScene._bulletNum++;
 
 
-        }
+
+
+                GameObject parentGm = transform.parent.gameObject;
+
+                BaseMiddleObject baseMiddle = (BaseMiddleObject)parentGm.GetComponent<BaseMiddleObject>();
+             //   baseMiddle.showNext();
+
+            }
 	}
 
 }
