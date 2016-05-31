@@ -62,10 +62,6 @@ namespace Assets.Script
                 BattleScene._bulletNum--;
                 battleScene.GetComponent<BattleScene>().FillingBullet();
                 Debug.Log("子弹击中玩家1");
-
-                //更新生命值(脚本组件最好在一开始就获取，只要获取一次) --pzy
-                battleScene.GetComponent<BattleScene>().player1Life.UpdateLife();
-
                 GameObject.Destroy(this.gameObject);
             }
             else if (other.tag.CompareTo("Player2") == 0)
@@ -74,10 +70,6 @@ namespace Assets.Script
                 BattleScene._bulletNum--;
                 battleScene.GetComponent<BattleScene>().FillingBullet();
                 Debug.Log("子弹击中玩家2");
-
-                //更新生命值 --pzy
-                battleScene.GetComponent<BattleScene>().player2Life.UpdateLife();
-
                 GameObject.Destroy(this.gameObject);
             }
             else if (other.tag.CompareTo("UpWall") == 0)

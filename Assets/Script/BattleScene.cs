@@ -35,28 +35,12 @@ namespace Assets.Script
 
 		public static int _bulletNum = 0;
 
-        #region PlayerLife --pzy
-        private PlayerLife _player1Life;
-        public PlayerLife player1Life { get { return _player1Life; } }
-        private PlayerLife _player2Life;
-        public PlayerLife player2Life { get { return _player2Life; } }
-
-        private void InitPlayerLife()
-        {
-            _player1Life = transform.Find("Player1Life").GetComponent<PlayerLife>();
-            _player2Life = transform.Find("Player2Life").GetComponent<PlayerLife>();
-        }
-        #endregion
-
         protected override void Awake()
         {
             base.Awake();
             gameObjectList = this.GetComponent<GameObjectList>();
             _player1Bottom = gameObjectList.gameobjectList[6];
             _player2Bottom = gameObjectList.gameobjectList[7];
-
-            //init playerlife widget --pzy
-            InitPlayerLife();
         }
         protected override void Update()
         {
