@@ -1,9 +1,19 @@
 fileFormatVersion: 2
 guid: 5d0e5f67f91083d4caee35870622fe9a
-timeCreated: 1464351567
+timeCreated: 1464954064
 licenseType: Pro
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: score1_0
+    21300002: score1_1
+    21300004: score1_2
+    21300006: score1_3
+    21300008: score1_4
+    21300010: score1_5
+    21300012: score1_6
+    21300014: score1_7
+    21300016: score1_8
+    21300018: score1_9
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -38,7 +48,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,7 +59,182 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: score1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 186
+        width: 57
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24.5, y: 35}
+        - {x: -28.5, y: 30}
+        - {x: -28.5, y: -23}
+        - {x: -26.5, y: -35}
+        - {x: 26.5, y: -35}
+        - {x: 28.5, y: -26}
+        - {x: 28.5, y: 35}
+    - name: score1_1
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 184
+        width: 57
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17.5, y: 36}
+        - {x: -28.5, y: 23}
+        - {x: -28.5, y: -36}
+        - {x: 28.5, y: -36}
+        - {x: 28.5, y: 36}
+    - name: score1_2
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 186
+        width: 52
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26, y: 33.5}
+        - {x: -26, y: -33.5}
+        - {x: 7, y: -33.5}
+        - {x: 26, y: 3.5}
+        - {x: 26, y: 33.5}
+    - name: score1_3
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 186
+        width: 55
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27.5, y: -35}
+        - {x: 20.5, y: -35}
+        - {x: 27.5, y: -33}
+        - {x: 27.5, y: 21}
+        - {x: 25.5, y: 35}
+        - {x: -18.5, y: 35}
+        - {x: -27.5, y: 8}
+    - name: score1_4
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 114
+        width: 52
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26, y: -35}
+        - {x: 26, y: -35}
+        - {x: 26, y: 35}
+        - {x: -25, y: 35}
+        - {x: -26, y: 29}
+    - name: score1_5
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 114
+        width: 57
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18.5, y: 33.5}
+        - {x: -28.5, y: 10.5}
+        - {x: -28.5, y: -28.5}
+        - {x: -18.5, y: -33.5}
+        - {x: 27.5, y: -33.5}
+        - {x: 28.5, y: -29.5}
+        - {x: 28.5, y: 23.5}
+        - {x: 22.5, y: 33.5}
+    - name: score1_6
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 112
+        width: 52
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26, y: 36}
+        - {x: -26, y: -36}
+        - {x: 25, y: -36}
+        - {x: 26, y: -35}
+        - {x: 26, y: 33}
+        - {x: 25, y: 36}
+    - name: score1_7
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 114
+        width: 55
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21.5, y: 35}
+        - {x: -27.5, y: 31}
+        - {x: -27.5, y: 23}
+        - {x: -22.5, y: 3}
+        - {x: -14.5, y: 5}
+        - {x: -10.5, y: 5}
+        - {x: -15.5, y: 5}
+        - {x: -27.5, y: -9}
+        - {x: -27.5, y: -35}
+        - {x: 27.5, y: -35}
+        - {x: 27.5, y: 31}
+        - {x: 25.5, y: 35}
+    - name: score1_8
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 42
+        width: 33
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: 33.5}
+        - {x: -16.5, y: -33.5}
+        - {x: 16.5, y: -33.5}
+        - {x: 16.5, y: 33.5}
+    - name: score1_9
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 40
+        width: 57
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28.5, y: 36}
+        - {x: -28.5, y: -36}
+        - {x: 16.5, y: -36}
+        - {x: 28.5, y: -32}
+        - {x: 28.5, y: 25}
+        - {x: 21.5, y: 36}
     outline: []
   spritePackingTag: 
   userData: 
